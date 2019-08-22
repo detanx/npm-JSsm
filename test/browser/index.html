@@ -1,0 +1,76 @@
+<!--
+ * @Author: xudong.tang(Detanx)
+ * @Date: 2019-06-17 08:02:36
+ * @LastEditors: xudong.tang(Detanx)
+ * @LastEditTime: 2019-08-22 18:32:30
+ * @Email: detanxit@163.com;detanxit163@gmail.com
+ * @Description: 
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <title>method</title>
+</head>
+
+<body>
+    请查看控制台。
+    <div id="root"></div>
+    <script src="https://unpkg.com/lodash"></script>
+    <script src="../../dist/_method_.js"></script>
+    <script>
+        // ********-- every测试 --********
+        console.log('_selfEvery', [1, 2, 3]._selfEvery((item) => item > 0))
+        // ********-- 数组map测试 --********
+        console.log('_selfMap', [1, 2, 3]._selfMap((item) => item * 2))
+        // ********-- flat测试 --********
+        console.log('_selfFlat', [1, 2, [7, 9, [3, 4, [5, 8]]]]._selfFlat())
+        // ********-- filter测试 --********
+        console.log('_selfFilter', [1, 2, 3]._selfFilter((item) => item > 2))
+        // ********-- every测试 --********
+        console.log('_selfEvery', [1, 2, 3]._selfEvery((item) => item > 0))
+        // ********-- 数组数字组成最小数测试 --********
+        console.log('_selfMinum', [21, 23, 3, 221]._selfMinum())
+
+
+        // // ********-- 防抖/节流测试 --********
+        function scroll() {
+            console.log('debounce')
+        }
+        function scroll0() {
+            console.log('throttle')
+        }
+        function scroll1() {
+            console.log('normal')
+        }
+
+        window.addEventListener('scroll', _method_.debounce(scroll, 1000))
+        window.addEventListener('scroll', _method_.throttle(scroll0, 1000))
+        window.addEventListener('scroll', scroll1)
+
+        // ********-- 斐波拉契数列测试 --********
+        const meFebonacci = _method_.memory(_method_.febonacci)
+        console.log('febonacci', meFebonacci(10))
+
+        // ********-- 金额千位分隔符测试 --********
+        console.log('moneyFormat', _method_.moneyFormat(2333.444))
+
+        // ********-- 柯里化测试 --********
+        function add(a, b, c) {
+            return a + b + c
+        }
+        const curryadd = _method_._selfCurry(add)
+        console.log('curryadd', curryadd(1, 2)(4, 3))
+        // ********-- 敏感字符 --********
+        console.log('escape', _method_.escape('<script>alert(1)<\/script>'))
+        // ********-- 版本 --********
+        console.log('version', _method_.version)
+        document.querySelector('#root').innerHTML = `当前版本号：${_method_.version}`
+    </script>
+</body>
+
+</html>

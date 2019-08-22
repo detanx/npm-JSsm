@@ -1,0 +1,20 @@
+// babel配置 https://www.cnblogs.com/tugenhua0707/p/9452471.html
+{
+  "presets": [
+    ["@babel/preset-env", {
+      "useBuiltIns": "usage",
+      "modules": false
+    }]
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime", {
+        "corejs": false,
+        "helpers": false,
+        "regenerator": false,
+        "useESModules": false
+      }
+    ]
+  ],
+  "comments": true
+}

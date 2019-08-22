@@ -1,0 +1,39 @@
+{
+  "name": "js-self-methods",
+  "version": "0.0.1",
+  "description": "js-self-methods 是一个JavaScript方法库",
+  "main": "./dist/_method_.js",
+  "scripts": {
+    "dev": "webpack --watch --config=./config/webpack.config.dev.js --process --color",
+    "build": "webpack --config=./config/webpack.config.prod.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/detanx/js-methods.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "prototype",
+    "Array",
+    "method",
+    "data structure"
+  ],
+  "author": "detanx<detanxit@163.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/detanx/js-methods/issues"
+  },
+  "homepage": "https://github.com/detanx/js-methods/blob/master/README.md",
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "babel-loader": "^8.0.4",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-merge": "^4.2.1"
+  }
+}
