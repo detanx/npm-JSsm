@@ -1,6 +1,6 @@
 {
   "name": "js-self-methods",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "js-self-methods 是一个JavaScript方法库",
   "main": "./dist/_method_.js",
   "scripts": {
