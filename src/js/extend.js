@@ -2,13 +2,13 @@
  * @Author: xudong.tang(Detanx)
  * @Date: 2019-08-15 14:44:24
  * @LastEditors: xudong.tang(Detanx)
- * @LastEditTime: 2019-08-23 16:23:49
+ * @LastEditTime: 2019-09-02 17:44:22
  * @Email: detanxit@163.com;detanxit163@gmail.com
  * @Description: 常用的一些方法
  */
 const extend = () => {
     // ********-- 节流 --********
-    function throttle(fn, delay = 500) {
+    const throttle = (fn, delay = 500) => {
         let flag = true;
         return function (...args) {
             if (!flag) return;

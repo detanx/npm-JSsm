@@ -2,93 +2,54 @@
  * @Author: xudong.tang(Detanx)
  * @Date: 2019-08-15 14:44:33
  * @LastEditors: xudong.tang(Detanx)
- * @LastEditTime: 2019-08-22 17:09:06
+ * @LastEditTime: 2019-09-02 17:38:48
  * @Email: detanxit@163.com;detanxit163@gmail.com
- * @Description: 数组原型方法
+ * @Description: 数组方法
  */
 
-// ********-- 数组flat --********
-Array.prototype._selfFlat = function () {
-    const ARRAY = [...this]
-    const ARRAY_LENGTH = ARRAY.length
-    const RESULT = []
-    for (let i = 0; i < ARRAY_LENGTH; i++) {
-        if (Array.isArray(ARRAY[i])) {
-            RESULT.push.apply(RESULT, ARRAY[i]._selfFlat())
+const array = () => {
+    // ********-- 数组flat --********
+    const _selfFlat = function (arr) {
+        if (!Array.isArray(arr)) {
+            return arr
         }
-        else {
-            RESULT.push(ARRAY[i])
+        const ARRAY_LENGTH = arr.length
+        const RESULT = []
+        for (let i = 0; i < ARRAY_LENGTH; i++) {
+            if (Array.isArray(arr[i])) {
+                RESULT.push.apply(RESULT, _selfFlat(arr[i]))
+            }
+            else {
+                RESULT.push(arr[i])
+            }
         }
+        return RESULT
     }
-    return RESULT
-}
 
-// ********-- 数组map --********
-Array.prototype._selfMap = function (fn, context) {
-    const ARGS = Array.prototype.slice.call(this)
-    // const ARGS = [...this]
-    const ARGS_LRNGTH = ARGS.length
-    const NEW_MAP_LIST = []
-    for (let i = 0; i < ARGS_LRNGTH; i++) {
-        if (!ARGS.hasOwnProperty(i)) continue
-        NEW_MAP_LIST.push(fn.call(context, ARGS[i], i, this))
+    // ********-- 数组数字组成最小数 --********
+    const _selfMinum = function (arr) {
+        if (!Array.isArray(arr)) {
+            return arr
+        }
+        const ARGS_LENGTH = arr.length
+        if (!ARGS_LENGTH) return ''
+        return arr.sort(compare).join('');
     }
-    return NEW_MAP_LIST
-}
-
-// ********-- filter --********
-Array.prototype._selfFilter = function (fn, context) {
-    // const ARGS = Array.prototype.slice.call(this)
-    const ARGS = [...this]
-    const ARGS_LENGTH = ARGS.length
-    const RESULT_LIST = []
-    for (let i = 0; i < ARGS_LENGTH; i++) {
-        if (!ARGS.hasOwnProperty(i)) continue
-        fn.call(context, ARGS[i], i, this) && RESULT_LIST.push(ARGS[i])
+    // ********-- 数字比较 --********
+    const compare = (a, b) => {
+        const front = "" + a + b;
+        const behind = "" + b + a;
+        return front - behind;
     }
-    return RESULT_LIST
-}
 
-// ********-- 数组some --********
-Array.prototype._selfSome = function (fn, context) {
-    // const ARGS = Array.prototype.slice.call(this)
-    const ARGS = [...this]
-    const ARGS_LENGTH = ARGS.length
-    if (!ARGS_LENGTH) return false
-    for (let i = 0; i < ARGS_LENGTH; i++) {
-        if (!ARGS.hasOwnProperty(i)) continue
-        const RES = fn.call(context, ARGS[i], i, this)
-        if (RES) return true
+    // ********-- 数组去重 --********
+    const _selfDeweight = (arr) => {
+        return Array.from(new Set(arr))
     }
-    return false
-}
-
-// ********-- 数组every --********
-Array.prototype._selfEvery = function (fn, context) {
-    const ARGS = [...this]
-    const ARGS_LENGTH = ARGS.length
-    let count = 0
-    if (!ARGS_LENGTH) return false
-    for (let i = 0; i < ARGS_LENGTH; i++) {
-        if (!ARGS.hasOwnProperty(i)) continue
-        const RES = fn.call(context, ARGS[i], i, this)
-        if (RES) count++
+    return {
+        _selfFlat,
+        _selfMinum,
+        _selfDeweight
     }
-    if (count === ARGS_LENGTH) return true
-    return false
 }
-
-// ********-- 数组数字组成最小数 --********
-Array.prototype._selfMinum = function () {
-
-    const ARGS = [...this]
-    const ARGS_LENGTH = ARGS.length
-    if (!ARGS_LENGTH) return ''
-    return ARGS.sort(compare).join('');
-}
-// ********-- 数字比较 --********
-const compare = (a, b) => {
-    const front = "" + a + b;
-    const behind = "" + b + a;
-    return front - behind;
-}
+export default array()

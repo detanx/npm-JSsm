@@ -2,7 +2,7 @@
  * @Author: xudong.tang(Detanx)
  * @Date: 2019-06-17 08:02:36
  * @LastEditors: xudong.tang(Detanx)
- * @LastEditTime: 2019-08-22 19:00:21
+ * @LastEditTime: 2019-09-02 17:43:38
  * @Email: detanxit@163.com;detanxit163@gmail.com
  * @Description:
  -->
@@ -25,11 +25,9 @@ yarn add js-self-methods --save-dev
 *  _method_.moneyFormat(number) //  金额千位分隔符
 *  _method_._selfCurry(fn) //  柯里化
 *  _method_.escape(string) //  敏感字符转义
-* [1, 2, 3]._selfEvery((item) => item > 0) // 数组every方法
-* [1, 2, 3]._selfMap((item) => item * 2) // 数组map方法
-* [1, 2, [7, 9, [3, 4, [5, 8]]]]._selfFlat() //  数组flat方法
-* [1, 2, 3]._selfFilter((item) => item > 2) //  数组filter方法
-* [21, 23, 3, 221]._selfMinum() //  数组数字组成最小数方法
+*  _method_._selfFlat([1, 2, [7, 9, [3, 4, [5, 8]]]]) //  数组flat方法
+*  _method_._selfDeweight([1, 2, 3,2, 3]) //  数组去重方法
+*  _method_._selfMinum([21, 23, 3, 221]) //  数组数字组成最小数方法
 ## 发布到 npm
 
 ```
@@ -60,18 +58,14 @@ npm install js-self-methods --save-dev
 2. 使用方法
 
 ```
- // ********-- every测试 --********
-console.log('_selfEvery', [1, 2, 3]._selfEvery((item) => item > 0))
-// ********-- 数组map测试 --********
-console.log('_selfMap', [1, 2, 3]._selfMap((item) => item * 2))
+// 获取当前版本号
+console.log('version',_method_.version)
 // ********-- flat测试 --********
-console.log('_selfFlat', [1, 2, [7, 9, [3, 4, [5, 8]]]]._selfFlat())
-// ********-- filter测试 --********
-console.log('_selfFilter', [1, 2, 3]._selfFilter((item) => item > 2))
-// ********-- every测试 --********
-console.log('_selfEvery', [1, 2, 3]._selfEvery((item) => item > 0))
-// ********-- 数组数字组成最小数测试 --********
-console.log('_selfMinum', [21, 23, 3, 221]._selfMinum())
+console.log('_selfFlat',  _method_._selfFlat([1, 2, [7, 9, [3, 4, [5, 8]]]]))
+// ********-- 数组去重测试 --********
+console.log('_selfDeweight', _method_._selfDeweight([1, 2, 3,2, 3]))
+// ********-- 数组数字组成最小数方法 --********
+console.log('_selfMinum',_method_._selfMinum([21, 23, 3, 221]))
 ......
 ```
 
@@ -85,18 +79,13 @@ var _method_ = require('js-self-methods')
 2. 使用方法
 
 ```
+// 获取当前版本号
 console.log('version',_method_.version)
-// ********-- every测试 --********
-console.log('_selfEvery', [1, 2, 3]._selfEvery((item) => item > 0))
-// ********-- 数组map测试 --********
-console.log('_selfMap', [1, 2, 3]._selfMap((item) => item * 2))
 // ********-- flat测试 --********
-console.log('_selfFlat', [1, 2, [7, 9, [3, 4, [5, 8]]]]._selfFlat())
-// ********-- filter测试 --********
-console.log('_selfFilter', [1, 2, 3]._selfFilter((item) => item > 2))
-// ********-- every测试 --********
-console.log('_selfEvery', [1, 2, 3]._selfEvery((item) => item > 0))
-// ********-- 数组数字组成最小数测试 --********
-console.log('_selfMinum', [21, 23, 3, 221]._selfMinum())
+console.log('_selfFlat',  _method_._selfFlat([1, 2, [7, 9, [3, 4, [5, 8]]]]))
+// ********-- 数组去重测试 --********
+console.log('_selfDeweight', _method_._selfDeweight([1, 2, 3,2, 3]))
+// ********-- 数组数字组成最小数方法 --********
+console.log('_selfMinum',_method_._selfMinum([21, 23, 3, 221]))
 ......
 ```
